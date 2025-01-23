@@ -1,9 +1,7 @@
 from transformers import pipeline
 
-# Initialize the summarization pipeline
 summarizer = pipeline("summarization", model="t5-small")
 
-# Sample paragraph
 paragraph = """
 We have studied electric field in the last section. It is a vector quantity
 and can be represented as we represent vectors. Let us try to represent E
@@ -106,27 +104,21 @@ field around a configuration of charges. An electric field line is, in general,
 # Generate the summary
 summary = summarizer(paragraph, max_length=1500, min_length=200, do_sample=False)
 
-# Print the summary
 print("Summary:")
 print(len(summary[0]['summary_text']))
 print((summary[0]['summary_text']))
 
-# text_summarization.py
 
 from transformers import pipeline
 
 def summarize_text(paragraph):
-    # Initialize the summarization pipeline
     summarizer = pipeline("summarization", model="t5-small")
 
-    # Generate the summary
     summary = summarizer(paragraph, max_length=1500, min_length=200, do_sample=False)
 
-    # Return the summarized text
     return summary[0]['summary_text']
 
 if __name__ == "__main__":
-    # Example text
     paragraph = """
     We have studied electric field in the last section. It is a vector quantity
     and can be represented as we represent vectors. Let us try to represent E
@@ -226,11 +218,9 @@ if __name__ == "__main__":
     field around a configuration of charges. An electric field line is, in general,
     """
     
-    # Call the summarization function
     summary_text = summarize_text(paragraph)
     print("Summary:")
     print(summary_text)
 
-    # Save the summary to a file
     with open("summary.txt", "w") as f:
         f.write(summary_text)
